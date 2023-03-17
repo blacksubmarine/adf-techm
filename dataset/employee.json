@@ -10,7 +10,10 @@
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": "parquet_employee",
+				"folderPath": "ingest",
+				"fileSystem": "data01"
 			},
 			"compressionCodec": "snappy"
 		},
