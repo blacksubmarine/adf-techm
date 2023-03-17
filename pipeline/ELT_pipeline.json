@@ -41,7 +41,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_onpretoadls",
+						"referenceName": "SqlServerTable1",
 						"type": "DatasetReference"
 					}
 				],
