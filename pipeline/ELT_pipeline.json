@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "copy sql table",
+				"description": "create test pipeline",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -47,7 +48,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "employee",
+						"referenceName": "employee_parquet",
 						"type": "DatasetReference"
 					}
 				]
