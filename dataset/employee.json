@@ -11,7 +11,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "parquet_employee",
+				"fileName": "parquet_employee.parquet",
 				"folderPath": "ingest",
 				"fileSystem": "data01"
 			},

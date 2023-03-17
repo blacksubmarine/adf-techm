@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "moveonpremtoadls",
+				"name": "copy sql table",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
