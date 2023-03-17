@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntimeOnpremtoCloud",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

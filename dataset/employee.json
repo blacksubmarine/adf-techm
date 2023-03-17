@@ -1,0 +1,22 @@
+{
+	"name": "employee",
+	"properties": {
+		"description": "move data from sql server onprem to adls",
+		"linkedServiceName": {
+			"referenceName": "adlstechmgus",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "parquet_employee.parquet",
+				"folderPath": "ingest",
+				"fileSystem": "data01"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
