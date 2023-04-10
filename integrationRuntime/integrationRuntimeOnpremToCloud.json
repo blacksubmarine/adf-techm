@@ -1,0 +1,7 @@
+{
+	"name": "integrationRuntimeOnpremToCloud",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "to get data from sql server onprem"
+	}
+}
