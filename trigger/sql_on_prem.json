@@ -1,0 +1,25 @@
+{
+	"name": "sql_on_prem",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ELT_pipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2023-04-10T16:00:00Z",
+				"endTime": "2023-04-11T20:24:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
