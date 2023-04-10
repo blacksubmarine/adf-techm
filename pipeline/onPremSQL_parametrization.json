@@ -18,7 +18,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "select *\nfrom [AdventureWorks2019].sys.tables\nwhere schema_id in (6)",
+							"value": "select tbl.name as tableName, sch.name as schemaName\nfrom [AdventureWorks2019].sys.tables tbl\ninner join AdventureWorks2019.sys.schemas sch\non sch.schema_id = tbl.schema_id\nwhere tbl.schema_id in (6)",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -67,12 +67,56 @@
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
-								"enableStaging": false
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
 							},
 							"inputs": [
 								{
 									"referenceName": "dynamicTableName",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"schema": {
+											"value": "@item().schemaName",
+											"type": "Expression"
+										},
+										"table": {
+											"value": "@item().tableName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_ADLS",
+									"type": "DatasetReference",
+									"parameters": {
+										"layer": "newcontainersqlserver",
+										"folder": {
+											"value": "@item().schemaName",
+											"type": "Expression"
+										},
+										"file": {
+											"value": "@item().tableName",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
