@@ -225,13 +225,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SqlServerTable1",
+						"referenceName": "onpremSQL",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "employee_parquet",
+						"referenceName": "purchase_order_header_adls",
 						"type": "DatasetReference"
 					}
 				]
