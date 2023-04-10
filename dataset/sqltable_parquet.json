@@ -1,0 +1,20 @@
+{
+	"name": "sqltable_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage111",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "output",
+				"fileSystem": "newcontainersqlserver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
