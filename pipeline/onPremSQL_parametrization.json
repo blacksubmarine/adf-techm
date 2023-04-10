@@ -18,7 +18,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "select *\nfrom [AdventureWorks2019].sys.tables\nwhere schema_id in (6,8)",
+							"value": "select *\nfrom [AdventureWorks2019].sys.tables\nwhere schema_id in (6)",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -34,8 +34,50 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": []
+				"dependsOn": [
+					{
+						"activity": "getTables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('getTables').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy into datalake",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "dynamicTableName",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
